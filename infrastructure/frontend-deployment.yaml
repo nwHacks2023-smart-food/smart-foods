@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: smart-foods-fe
+    labels:
+        app: smart-food-fe
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: smart-food-fe
+    template:
+        metadata:
+            labels:
+                app: smart-food-fe
+        spec:
+            containers:
+                - name: smart-food-fe
+                  image: codyle212/smart-foods-fe
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 3000
