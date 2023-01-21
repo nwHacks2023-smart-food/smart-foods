@@ -9,5 +9,7 @@
 - leave the rest of settings untouched
 ![image](images/settings-option.png)
 - click on review and create 
+<br>
 ![image](images/create-cluster.png)
 - createing the clustet
+<br>
