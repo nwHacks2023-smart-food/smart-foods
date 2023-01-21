@@ -16,4 +16,4 @@
 - Using Azure aks cli `az aks get-credentials --resource-group smart-foods --name smart-food-aks` to get credential for accessing the aks cluster
 - the context should be set up to the aks cluster you created
 ### Creating a Ingress Controller
-- Create new namespace with `kubectl create namespace ingress-basoc`
+- Create new namespace with `kubectl create namespace ingress-basic`
