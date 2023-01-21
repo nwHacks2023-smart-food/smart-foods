@@ -19,3 +19,5 @@
 - Create new namespace with `kubectl create namespace ingress-basic`
 - Create a public ip as a ingress endpoint for routing to differetn services `az network public-ip create --resource-group smart-foods --name PublicIPForIngress --sku Standard --allocation-method static`
 ![image](images/static-ip.png)
+- Installing Ingress-Nginx controller
+![image](images/ingress-controller.png)
