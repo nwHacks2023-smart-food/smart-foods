@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: smart-foods-fe
+    name: smart-foods-fe-deployment
     labels:
         app: smart-food-fe
 spec:

@@ -9,5 +9,7 @@ spec:
     selector:
         app: smart-food-fe
     ports:
-        - port: 80
+        - name: smart-food-fe
+          protocol: TCP
+          port: 3000
           targetPort: 3000
