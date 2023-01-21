@@ -17,4 +17,5 @@
 - the context should be set up to the aks cluster you created
 ### Creating a Ingress Controller
 - Create new namespace with `kubectl create namespace ingress-basic`
-- Create a public ip as a ingress endpoint for routing to differetn services `az network public-ip create --resource-group smart-foods --name PublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv`
+- Create a public ip as a ingress endpoint for routing to differetn services `az network public-ip create --resource-group smart-foods --name PublicIPForIngress --sku Standard --allocation-method static`
+![image](images/static-ip.png)
