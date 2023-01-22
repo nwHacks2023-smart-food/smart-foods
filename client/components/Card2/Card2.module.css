@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .image {
@@ -25,14 +26,24 @@
     margin-left: auto;
     text-align: left;
     padding-right: 1rem;
+    width: 10rem;   
 }
 
 .choices p {
     font-size: 0.75rem;
-    text-align: center;
 }
 
 .choices .price {
     font-weight: 600;
     font-size: 1rem;
+}
+
+.addItem button {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(152, 255, 152);
+}
+
+.addItem button:hover {
+    opacity: 80%;
 }

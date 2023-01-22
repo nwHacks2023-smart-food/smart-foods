@@ -39,4 +39,6 @@
 
 .cards {
     height: 20rem;
+    overflow: scroll;
+    overflow-x: hidden;
 }
