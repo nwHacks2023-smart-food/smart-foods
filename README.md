@@ -1,5 +1,11 @@
 # Project Description
-SmartFoods is a web app that enables users to create a smart shopping list that compares the selected food's nutrients to the recommended nutrient values in a healthy diet. Users can add their sex and days they are planning for to tailor their response. Finally, users are shown a list with the cheapest prices for the selected items and links to order them online. 
+SmartFoods is a web app aimed to make healthy diets simple for students. Rather than having to count calories and nutrients yourself, all you need to do is select what you want to eat and we will tell you how this fits into a healthy diet!
+
+After users create their cart, we use the Nutritionix API to find the nutritional information of all the items inside the cart. Users are then shown their list of items with corresponding nutritional info and where they can order the item online (currently from Amazon and SaveOnFoods). Links are auto sorted by the lowest price first. 
+
+Microsoft Cloud AKS clusters were used to host our website.  
+
+Further developments include budgeting options, evaluation of which nutrients are (in)sufficient (code in repo but unimplemented due to time), and adding more stores.
 
 ## Demo
 ![image](images/demo-img-0.png)
