@@ -91,7 +91,6 @@ const BuildCart = () => {
 
 				<div className={styles.buttons}>
 					<Button text="Go Back" path="/choose" />
-					<Button text="View Summary" path="/build_cart" />
 				</div>
 			</div>
 		</Layout>
