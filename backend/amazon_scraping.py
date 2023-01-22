@@ -39,8 +39,8 @@ class amazonScraper():
         links = [ "https://www.amazon.ca"+ link["href"] for link in links]
 
         min_price = 10000
-
-        for i in range(0, len(titles)):
+        index = smallest_index(titles, prices, links)
+        for i in range(0, index):
             name = titles[i]
             price = prices[i]
             link = links[i]
@@ -54,7 +54,15 @@ class amazonScraper():
                 self.item_info[item] = dict_to_add
 
 
+def smallest_index(titles, prices, index):
+    indexm = 0
+    lst = [len(titles), len(prices), len(index)]
 
+    for i in range(0,3):
+        if (lst[i] < lst[indexm]):
+            indexm = i
+    
+    return lst[indexm]
 
 # TODO: Add links
 # TODO: Add budgeting mechanism

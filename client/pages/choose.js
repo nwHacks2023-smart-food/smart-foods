@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Layout from '../components/Layout/Layout.js';
 import styles from '../styles/choose.module.css';
 import Button from '../components/Button/Button';
@@ -112,11 +113,45 @@ const foodItems = [
 ];
 
 const Choose = () => {
-    const test = async () => {
+    const [items, setItems] = useState([]);
+    // On items change, store it is local storage
+
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('items'));
+        if (items) {
+            setItems(items);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(items));
+    }, [items]);
+
+    const test = async (event) => {
+        const itemName = event.target.food.value;
+        event.preventDefault();
+        const found = items.find((item) => item.name === itemName);
+        if (found) {
+            return;
+        }
         const response = await axios.get(
-            'http://127.0.0.1:8000/api/nutrition?food=apple'
+            `http://127.0.0.1:8000/api/nutrition?food=${itemName}`
         );
-        console.log(response.data);
+
+        const { nf_calories, nf_sugars, nf_protein, nf_serving_weight_grams } =
+            response.data[itemName];
+
+        setItems([
+            ...items,
+            {
+                imageSearch: itemName,
+                name: itemName,
+                mass: nf_serving_weight_grams,
+                calories: nf_calories,
+                sugar: nf_sugars,
+                protein: nf_protein,
+            },
+        ]);
     };
 
     return (
@@ -124,13 +159,13 @@ const Choose = () => {
             <div className={styles.container}>
                 <h2 className={styles.step}>Step 1: Choose your foods</h2>
                 <div className={styles.content}>
-                    <div className={styles.input}>
+                    <form className={styles.input} onSubmit={test}>
                         <input
                             type="text"
+                            name="food"
                             placeholder="Enter a food:"
                             list="food-items"
                         />
-
                         <datalist id="food-items">
                             {foodItems.map((foodItem, index) => {
                                 return (
@@ -140,23 +175,14 @@ const Choose = () => {
                                 );
                             })}
                         </datalist>
-                        <button
-                            type="submit"
-                            className={styles.addButton}
-                            onClick={test}
-                        >
+                        <button type="submit" className={styles.addButton}>
                             +
                         </button>
-                    </div>
+                    </form>
                     <div className={styles.cards}>
-                        <Card
-                            imageSearch="PLACEHOLDER"
-                            name="Orange"
-                            mass="50g"
-                            calories="200"
-                            sugar="14g"
-                            protein="2g"
-                        />
+                        {items?.map((item, index) => {
+                            return <Card key={index} {...item} />;
+                        })}
                     </div>
                 </div>
                 <Button text="Next" path="/build_cart" />
