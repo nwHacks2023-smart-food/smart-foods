@@ -1,8 +1,8 @@
 ## Demo
-![image](images/demo-img-0.png | width=300)
-![image](images/demo-img-1.png | width=300)
-![image](images/demo-img-2.png | width=300)
-![image](images/demo-img-3.png | width=300)
+![image](images/demo-img-0.png)
+![image](images/demo-img-1.png)
+![image](images/demo-img-2.png)
+![image](images/demo-img-3.png)
 
 # Deployment Steps
 
