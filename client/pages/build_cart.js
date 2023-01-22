@@ -13,31 +13,29 @@ const BuildCart = () => {
     // On items change, store it is local storage
     useEffect(() => {
         const getItemsData = async () => {
-            const response = await axios.post(
-                'http://localhost:8000/api/items',
+            const response = await axios.post('/api/items', {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Access-Control-Allow-Private-Network': true,
+                    'Access-Control-Allow-Credentials': 'true',
+                },
+                items: Object.keys(items),
+            });
 
-                {
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Headers': '*',
-                        'Access-Control-Allow-Credentials': 'true',
-                    },
-                    items: Object.keys(items),
-                }
-            );
-
-            Object.keys(items).forEach((key) =>
-                setItemsToCompare({
-                    ...itemsToCompare,
+            Object.keys(items).forEach((key) => {
+                setItemsToCompare((prevVals) => ({
+                    ...prevVals,
                     [key]: {
                         amazon: response.data.amazon[key],
                         saveonfood: response.data.saveonfood[key],
                     },
-                })
-            );
+                }));
+            });
         };
         getItemsData();
     }, []);
+
     return (
         <Layout>
             <div className={styles.container}>
@@ -48,10 +46,11 @@ const BuildCart = () => {
                             <h3>Compare</h3>
                             {Object.keys(itemsToCompare)?.map((key) => {
                                 const itemsByWebsite = itemsToCompare[key];
+                                console.log(key);
                                 return (
                                     <>
-                                        <h4>{key}</h4>
                                         <Card2
+                                            name={key}
                                             key={itemsByWebsite.amazon.link}
                                             imageSearch={items[key].imageSearch}
                                             mass={items[key].mass}
@@ -59,11 +58,12 @@ const BuildCart = () => {
                                             website={itemsByWebsite.amazon.link}
                                         ></Card2>
                                         <Card2
+                                            name={key}
                                             key={itemsByWebsite.saveonfood.link}
                                             imageSearch={items[key].imageSearch}
                                             mass={items[key].mass}
                                             price={
-                                                itemsByWebsite.saveonfood.price
+                                                itemsByWebsite.saveonfood?.price
                                             }
                                             website={
                                                 itemsByWebsite.saveonfood.link

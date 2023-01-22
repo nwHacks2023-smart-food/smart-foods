@@ -7,8 +7,8 @@ metadata:
         nginx.ingress.kubernetes.io/use-regex: 'true'
         cert-manager.io/cluster-issuer: letsencrypt
         nginx.ingress.kubernetes.io/enable-cors: 'true'
-        nginx.ingress.kubernetes.io/cors-allow-methods: '*'
-        nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+        nginx.ingress.kubernetes.io/cors-allow-methods: 'GET,POST'
+        nginx.ingress.kubernetes.io/cors-allow-origin: '20.104.64.188'
         nginx.ingress.kubernetes.io/cors-allow-headers: '*'
         nginx.ingress.kubernetes.io/cors-allow-credentials: 'true'
 spec:

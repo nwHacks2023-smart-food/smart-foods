@@ -121,16 +121,13 @@ const Choose = () => {
         const itemName = event.target.food.value;
         event.preventDefault();
 
-        const response = await axios.get(
-            `http://localhost:8000/api/nutrition?food=${itemName}`,
-            {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': '*',
-                    'Access-Control-Allow-Credentials': 'true',
-                },
-            }
-        );
+        const response = await axios.get(`/api/nutrition?food=${itemName}`, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+        });
 
         const { nf_calories, nf_sugars, nf_protein, nf_serving_weight_grams } =
             response.data[itemName];
