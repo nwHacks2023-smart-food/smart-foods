@@ -5,3 +5,13 @@
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
 }
+
+html, body {
+  background-color: #FDFDFD;
+}
+
+button {
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+}

@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 15%;
+}
+
+.container .banner {
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: #91C788;
+}
+
+.container p {
+    font-weight: 200;
+}
+
+.container button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #91C788;
+    border: 1px solid #91C788;
+}
+
+.container button:hover {
+    background-color: #91C788;
+    color: white;
+}
