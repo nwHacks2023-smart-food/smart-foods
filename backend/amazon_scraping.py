@@ -46,6 +46,7 @@ class amazonScraper():
             link = links[i]
 
             if price < min_price:
+                min_price = price
                 dict_to_add = {
                     "name": name,
                     "price": price,
