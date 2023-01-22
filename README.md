@@ -1,3 +1,6 @@
+# Project Description
+SmartFoods is a web app that enables users to create a smart shopping list that compares the selected food's nutrients to the recommended nutrient values in a healthy diet. Users can add their sex and days they are planning for to tailor their response. Finally, users are shown a list with the cheapest prices for the selected items and links to order them online. 
+
 ## Demo
 ![image](images/demo-img-0.png)
 ![image](images/demo-img-1.png)

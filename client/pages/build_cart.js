@@ -10,6 +10,7 @@ import Card3 from '../components/Card3/Card3';
 const BuildCart = () => {
     const { items, setItems } = useContext(ItemsContext);
     const [itemsToCompare, setItemsToCompare] = useState({});
+    const [cartItems, setCartItems] = useState([]);
     // On items change, store it is local storage
     useEffect(() => {
         const getItemsData = async () => {
