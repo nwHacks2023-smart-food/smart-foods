@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import random
 
-USER_INPUT = ["apples fruit", "banana fruit", "oranges fruit"]
+USER_INPUT = ["apples", "lemons", "cup noodles"]
 
 ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
 random_IP = random.choice(ran_list)
@@ -32,20 +32,27 @@ class saveOnFoodsCollector():
         links = [link.get("href") for 
                  link in soup.find_all("a", {"class": "ProductCardHiddenLink--1rjraab bWuEcw"})]
         min_price = 10000
-        dict = {}
+        
         for i in range(0, len(products)):
             name = products[i][:products[i].index("<span")]
             price = prices[i]
             link = links[i]
-
-            if float(price[1:5]) < min_price:
-                dict_to_add = {
-                    "name": name,
-                    "price": price,
-                    "link": link
-                }
-                self.item_info[item] = dict_to_add
-    
-scraper = saveOnFoodsCollector(USER_INPUT)
-print(scraper.scrap_save_on_foods())
-
+            
+            try:
+                if float(price[1:6]) < float(min_price):
+                    min_price = price
+                    dict_to_add = {
+                        "name": name,
+                        "price": price,
+                        "link": link
+                    }
+                    self.item_info[item] = dict_to_add
+            except ValueError:
+                if float(price[1:6]) < float(min_price[1:6]):
+                    min_price = price
+                    dict_to_add = {
+                        "name": name,
+                        "price": price,
+                        "link": link
+                    }
+                    self.item_info[item] = dict_to_add
