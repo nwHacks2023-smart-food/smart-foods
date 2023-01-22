@@ -5,11 +5,11 @@ import Layout from "../components/Layout/Layout";
 import styles from "../styles/build_cart.module.css";
 import Button from "../components/Button/Button";
 import Card2 from "../components/Card2/Card2";
-import Card3 from "../components/Card3/Card3";
 
 const BuildCart = () => {
 	const { items, setItems } = useContext(ItemsContext);
 	const [itemsToCompare, setItemsToCompare] = useState({});
+	const [cartItems, setCartItems] = useState([]);
 	// On items change, store it is local storage
 	useEffect(() => {
 		const getItemsData = async () => {
@@ -29,6 +29,10 @@ const BuildCart = () => {
 		};
 		getItemsData();
 	}, []);
+
+	function handleAddProduct(data) {
+		setCartItems((prev) => [...prev, data]);
+	}
 
 	return (
 		<Layout>
@@ -50,6 +54,7 @@ const BuildCart = () => {
 											mass={items[key].mass}
 											price={itemsByWebsite.amazon.price}
 											website={itemsByWebsite.amazon.link}
+											buttonHandler={handleAddProduct}
 										></Card2>
 										<Card2
 											name={key}
@@ -57,30 +62,28 @@ const BuildCart = () => {
 											imageSearch={items[key].imageSearch}
 											mass={items[key].mass}
 											price={itemsByWebsite.saveonfood?.price}
-											website={itemsByWebsite.saveonfood.link}
+											website={itemsByWebsite.saveonfood?.link}
+											buttonHandler={handleAddProduct}
 										></Card2>
 									</>
 								);
 							})}
-							{/* <Card2
-                                imageSearch=""
-                                name="Orange"
-                                mass="50g"
-                                price="$3.22"
-                                website="www.amazon.com"
-                            /> */}
 						</div>
 					</div>
 					<div className={styles.content}>
 						<div className={styles.cards}>
 							<h3>Cart</h3>
-							<Card3
-								imageSearch=""
-								name="Orange"
-								mass="50g"
-								price="$3.22"
-								website="www.amazon.com"
-							/>
+							{cartItems.map((item) => {
+								return (
+									<Card2
+										imageSearch={item.imageSearch}
+										name={item.name}
+										mass={item.mass}
+										price={item.price}
+										website={item.website}
+									/>
+								);
+							})}
 						</div>
 					</div>
 				</section>

@@ -1,7 +1,7 @@
 import styles from './Card2.module.css';
 import Image from '../Image/Image';
 
-const Card2 = ({ imageSearch, name, mass, price, website }) => {
+const Card2 = ({ imageSearch, name, mass, price, website, buttonHandler}) => {
     return (
         <div className={styles.container}>
             <div className={styles.image}>
@@ -18,7 +18,9 @@ const Card2 = ({ imageSearch, name, mass, price, website }) => {
                 </a>
             </div>
             <div className={styles.addItem}>
-                <button>Add</button>
+                <button onClick={() => {
+                    buttonHandler({imageSearch, name, mass, price, website})
+                }}>Add</button>
             </div>
         </div>
     );
