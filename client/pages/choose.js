@@ -114,7 +114,7 @@ const foodItems = [
 const Choose = () => {
     const test = async () => {
         const response = await axios.get(
-            'http://localhost:8000/api/nutrition?food=apple'
+            'http://127.0.0.1:8000/api/nutrition?food=apple'
         );
         console.log(response.data);
     };
@@ -130,13 +130,7 @@ const Choose = () => {
                             placeholder="Enter a food:"
                             list="food-items"
                         />
-                        <button
-                            type="submit"
-                            className={styles.addButton}
-                            onClick={test}
-                        >
-                            +
-                        </button>
+
                         <datalist id="food-items">
                             {foodItems.map((foodItem, index) => {
                                 return (
@@ -146,6 +140,13 @@ const Choose = () => {
                                 );
                             })}
                         </datalist>
+                        <button
+                            type="submit"
+                            className={styles.addButton}
+                            onClick={test}
+                        >
+                            +
+                        </button>
                     </div>
                     <div className={styles.cards}>
                         <Card
