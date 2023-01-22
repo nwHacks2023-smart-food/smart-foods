@@ -13,34 +13,51 @@ HEADERS = {'User-Agent':
 
 class amazonScraper():
     def __init__(self, user_input: list):
-        self.choices = user_input
-        self.prices = {}
+        self.choices = user_input 
+        self.item_info = {}
 
-        self.amazonCollector(self.choices)
 
-    def amazonCollector(self, choices):
-        for item in choices:
+    def scrap_amazon(self):
+        for item in self.choices:
             search = "https://www.amazon.ca/s?k=" + item + "&i=grocery"
             page = requests.get(search, headers=HEADERS)
             soup = BeautifulSoup(page.content, "lxml")
+            self.return_item_info(item, soup)
+        return self.item_info
 
-            titles = soup.find_all("span", attrs={"class": 'a-size-base-plus a-color-base a-text-normal'})
-            prices_whole = soup.find_all("span", attrs={"class": 'a-price-whole'})
-            prices_decimal = soup.find_all("span", attrs={"class": 'a-price-fraction'})
-            min_price = 100000
+    def return_item_info(self, item, soup):
+        titles = soup.find_all("span", attrs={"class": 'a-size-base-plus a-color-base a-text-normal'})
+        prices_whole = soup.find_all("span", attrs={"class": 'a-price-whole'})
+        prices_decimal = soup.find_all("span", attrs={"class": 'a-price-fraction'})
+        links = soup.find_all("a", attrs={"class": 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'})
+        min_price = 100000
 
-            titles = [title.text for title in titles]
-            prices_whole = [(price_whole.text) for price_whole in prices_whole]
-            prices_decimal = [(price_decimal.text).strip(".") for price_decimal in prices_decimal]
-            prices = [float(prices_whole[i] + prices_decimal[i]) for i in range(0, len(prices_whole))] 
+        titles = [title.text for title in titles]
+        prices_whole = [(price_whole.text) for price_whole in prices_whole]
+        prices_decimal = [(price_decimal.text).strip(".") for price_decimal in prices_decimal]
+        prices = [float(prices_whole[i] + prices_decimal[i]) for i in range(0, len(prices_whole))]
+        links = [ "https://www.amazon.ca"+ link["href"] for link in links]
 
-            print(len(titles))
-            print(len(prices))     
+        min_price = 10000
+        dict = {}
+        for i in range(0, len(titles)):
+            name = titles[i]
+            price = prices[i]
+            link = links[i]
+
+            if price < min_price:
+                dict_to_add = {
+                    "name": name,
+                    "price": price,
+                    "link": link
+                }
+                self.item_info[item] = dict_to_add
 
 
 
 
-scraper = amazonScraper(["apple","banana","oranges"])
+scraper = amazonScraper(USER_INPUT)
+print(scraper.scrap_amazon())
 
 # TODO: Add links
 # TODO: Add budgeting mechanism
