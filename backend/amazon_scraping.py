@@ -20,7 +20,7 @@ class amazonScraper():
 
     def amazonCollector(self, choices):
         for item in choices:
-            search = "https://www.amazon.ca/s?k=" + item + "&i=grocery&s=review-rank"
+            search = "https://www.amazon.ca/s?k=" + item + "&i=grocery"
             page = requests.get(search, headers=HEADERS)
             soup = BeautifulSoup(page.content, "lxml")
 
@@ -34,26 +34,11 @@ class amazonScraper():
             prices_decimal = [(price_decimal.text).strip(".") for price_decimal in prices_decimal]
             prices = [float(prices_whole[i] + prices_decimal[i]) for i in range(0, len(prices_whole))] 
 
-            print(titles)            
+            print(len(titles))
+            print(len(prices))     
 
 
-            # for title in titles[:6]:
-            #     price_whole = str(soup.find_all("span", attrs={"class": 'a-price-whole'}))[28:30]
-            #     price_decimal = str(soup.find_all("span", attrs={"class": 'a-price-fraction'}))[31:33]
 
-            #     if price_whole[1] == '<':
-            #         price_whole = price_whole[0]
-            #     elif price_decimal[1] == '<':
-            #         price_decimal = price_decimal[0]
-            #     price = float(price_whole + "." + price_decimal)
-
-            #     if price < min_price:
-            #         min_price = price
-            
-        #     self.prices[item] = [title_value, price]
-        # return self.prices
-
-            #print(price_decimal)
 
 scraper = amazonScraper(["apple","banana","oranges"])
 
