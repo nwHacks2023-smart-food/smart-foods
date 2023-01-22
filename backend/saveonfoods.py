@@ -51,7 +51,7 @@ class saveOnFoodsCollector():
                     index = i
                     break
 
-            price = (price[:index + 3]).replace(",", "")
+            price = price[:index + 3]
 
             if price != '':
                 price = float(price)

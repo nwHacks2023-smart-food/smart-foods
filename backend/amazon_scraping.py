@@ -39,7 +39,7 @@ class amazonScraper():
         titles = [title.text for title in titles]
         prices_whole = [(price_whole.text) for price_whole in prices_whole]
         prices_decimal = [(price_decimal.text).strip(".") for price_decimal in prices_decimal]
-        prices = [float(prices_whole[i].replace(",", "") + prices_decimal[i]) for i in range(0, len(prices_whole))]
+        prices = [float(prices_whole[i] + prices_decimal[i]) for i in range(0, len(prices_whole))]
         links = [ "https://www.amazon.ca"+ link["href"] for link in links]
 
         min_price = 10000
