@@ -22,7 +22,7 @@ const Card2 = ({
             <div className={styles.choices}>
                 <p className={styles.price}>${price}</p>
                 <a className={styles.website} href={website} target="__blank">
-                    {website.includes('amazon')
+                    {website?.includes('amazon')
                         ? 'www.amazon.ca'
                         : 'www.saveonfoods.ca'}
                 </a>
