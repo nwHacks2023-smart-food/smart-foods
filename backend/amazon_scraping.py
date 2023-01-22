@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from random import choice
 import requests
 
-USER_INPUT = ["apples", "banana", "oranges"]
+
 ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
 
 random_IP = choice(ran_list)
@@ -39,6 +39,7 @@ class amazonScraper():
         links = [ "https://www.amazon.ca"+ link["href"] for link in links]
 
         min_price = 10000
+
         for i in range(0, len(titles)):
             name = titles[i]
             price = prices[i]
@@ -54,9 +55,6 @@ class amazonScraper():
 
 
 
-
-scraper = amazonScraper(USER_INPUT)
-print(scraper.scrap_amazon())
 
 # TODO: Add links
 # TODO: Add budgeting mechanism

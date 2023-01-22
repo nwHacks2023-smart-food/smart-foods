@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import random
 
-USER_INPUT = ["apples fruit", "banana fruit", "oranges fruit"]
+
 
 ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
 random_IP = random.choice(ran_list)
@@ -45,7 +45,5 @@ class saveOnFoodsCollector():
                     "link": link
                 }
                 self.item_info[item] = dict_to_add
-    
-scraper = saveOnFoodsCollector(USER_INPUT)
-print(scraper.scrap_save_on_foods())
+
 
