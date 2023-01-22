@@ -8,7 +8,7 @@ const Image = ({ queryParam }) => {
     useEffect(() => {
         async function fetchData() {
             const result = await axios.get(
-                `https://www.googleapis.com/customsearch/v1?key=AIzaSyAnRA9N5OBTAKqb8sScaegM-YPyriTpByQ&cx=655d6cda3a6114be9&q=${queryParam}+food&searchType=image&start=1&num=1`
+                `https://www.googleapis.com/customsearch/v1?key=AIzaSyBfWOriccTJK5QKEvwgNbT9ozGRCPbvKpk&cx=b5a2c88278c014eeb&q=${queryParam}+food&searchType=image&start=1&num=1`
             );
 
             setResult(result);
