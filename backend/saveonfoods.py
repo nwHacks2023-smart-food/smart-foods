@@ -2,7 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 import random
 
+<<<<<<< HEAD
 USER_INPUT = ["apples", "lemons", "cup noodles"]
+=======
+
+>>>>>>> cfed37fa43a191d87900a4c59614405cfca49861
 
 ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
 random_IP = random.choice(ran_list)
