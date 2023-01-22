@@ -5,6 +5,6 @@ app = FastAPI()
 
 @app.get('/api/nutrition')
 def products(food:str):
-    nu = nutrition.NutritionChecker(['apple','banana'])
+    nu = nutrition.NutritionChecker(food)
     result = nu.search_for_nutrition()
     return {"data":result}
