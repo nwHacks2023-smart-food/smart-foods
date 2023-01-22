@@ -35,16 +35,42 @@ class nutritionRater():
         
         # Divides series by number of days in budget
         total_nutrients = total_nutrients / self.days
+        
         keys = total_nutrients.index.tolist()
         values = nutrition_dict.keys()
         new_index = dict(zip(keys, values))
         total_nutrients.rename(new_index, inplace=True)        
 
         # Comparison logic
-        print(total_nutrients)
-        print(self.nutrition_dv)
-        # mask = np.where(total_nutrients < self.nutrition_dv, True, False)
-        # print(mask)
+        # Slicing to last element to stop before serving size
+        under_mask = np.where(total_nutrients.iloc[:-1] < self.nutrition_dv.iloc[:-1], True, False)
+        under_nutrients = total_nutrients[:-1].loc[under_mask].index.tolist()
+        under_nutrients = [str(i).replace("_", " ") for i in under_nutrients]
+
+        over_mask = np.where(total_nutrients.iloc[:-1] > self.nutrition_dv.iloc[:-1], True, False)
+        over_nutrients = total_nutrients[:-1].loc[over_mask].index.tolist()
+        over_nutrients = [str(i).replace("_", " ") for i in over_nutrients]
+
+
+        under_return_message = None
+        over_return_message = None
+
+        if len(under_nutrients) > 0:
+            under_nutrients = ", and ".join(under_nutrients)
+            under_return_message = f"You could use more {under_nutrients} in your diet!"
+        if len(over_nutrients) > 0:
+            over_nutrients = ", ".join(over_nutrients)
+            over_return_message = f"You have a bit too much {over_nutrients} in your diet!"
+
+
+
+        if (under_return_message and over_return_message is not None): 
+            return(f"{under_return_message}\n + {over_return_message}")
+        elif under_return_message is not None:
+            return(under_return_message)
+        else:
+            return(over_return_message)
+
 
 test = nutritionChecker(["apple", "orange", "banana", "cup noodle"])
 test_rater = nutritionRater("Man", 3, test.search_for_nutrition())
