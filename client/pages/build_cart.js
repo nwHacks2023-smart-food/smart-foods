@@ -58,7 +58,7 @@ const BuildCart = () => {
 										></Card2>
 										<Card2
 											name={key}
-											key={itemsByWebsite.saveonfood.link}
+											key={itemsByWebsite.saveonfood?.link}
 											imageSearch={items[key].imageSearch}
 											mass={items[key].mass}
 											price={itemsByWebsite.saveonfood?.price}
@@ -81,6 +81,7 @@ const BuildCart = () => {
 										mass={item.mass}
 										price={item.price}
 										website={item.website}
+										noAdd={true}
 									/>
 								);
 							})}
