@@ -1,3 +1,9 @@
+## Demo
+![image](images/demo-img-0.png)
+![image](images/demo-img-1.png)
+![image](images/demo-img-2.png)
+![image](images/demo-img-3.png)
+
 # Deployment Steps
 
 ### Step 1 Create AKS Cluster in Azure
