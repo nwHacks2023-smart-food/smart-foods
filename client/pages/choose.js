@@ -122,7 +122,7 @@ const Choose = () => {
         event.preventDefault();
 
         const response = await axios.get(
-            `http://127.0.0.1:8000/api/nutrition?food=${itemName}`
+            `http://localhost:8000/api/nutrition?food=${itemName}`
         );
 
         const { nf_calories, nf_sugars, nf_protein, nf_serving_weight_grams } =
