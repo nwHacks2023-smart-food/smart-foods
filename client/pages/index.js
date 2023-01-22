@@ -7,8 +7,8 @@ export default function Home() {
 			<div className={styles.banner}>
 				<h1>SmartFoods</h1>
 				<p>Create your smart grocery list now!</p>
-				<Button text="Get Started" path="/choose" />
 			</div>
+				<Button text="Get Started" path="/choose" />
 		</div>
 	);
 }
