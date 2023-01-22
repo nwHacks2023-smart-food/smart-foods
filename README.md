@@ -1,5 +1,5 @@
 # Project Description
-SmartFoods is a web app aimed to make healthy diets simple for students. Rather than having to count calories and nutrients yourself, all you need to do is select what you want to eat and we will tell you how this fits into a healthy diet!
+SmartFoods is a web app aimed to make healthy diets simple for anyone. Rather than having to count calories and nutrients yourself, all you need to do is select what you want to eat and we will tell you how this fits into a healthy diet!
 
 After users create their cart, we use the Nutritionix API to find the nutritional information of all the items inside the cart. Users are then shown their list of items with corresponding nutritional info and where they can order the item online (currently from Amazon and SaveOnFoods). Links are auto sorted by the lowest price first. 
 
