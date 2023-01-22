@@ -25,10 +25,18 @@ class amazonScraper():
             soup = BeautifulSoup(page.content, "lxml")
 
             titles = soup.find_all("span", attrs={"class": 'a-size-base-plus a-color-base a-text-normal'})
-            price_whole = str(soup.find_("span", attrs={"class": 'a-price-whole'})).decode_contents().strip()
-            price_decimal = str(soup.find("span", attrs={"class": 'a-price-fraction'})).decode_contents().strip()
+            prices_whole = soup.find_all("span", attrs={"class": 'a-price-whole'})
+            prices_decimal = soup.find_all("span", attrs={"class": 'a-price-fraction'})
             min_price = 100000
-            
+
+            titles = [title.text for title in titles]
+            prices_whole = [(price_whole.text) for price_whole in prices_whole]
+            prices_decimal = [(price_decimal.text).strip(".") for price_decimal in prices_decimal]
+            prices = [float(prices_whole[i] + prices_decimal[i]) for i in range(0, len(prices_whole))] 
+
+            print(titles)            
+
+
             # for title in titles[:6]:
             #     price_whole = str(soup.find_all("span", attrs={"class": 'a-price-whole'}))[28:30]
             #     price_decimal = str(soup.find_all("span", attrs={"class": 'a-price-fraction'}))[31:33]
@@ -45,7 +53,7 @@ class amazonScraper():
         #     self.prices[item] = [title_value, price]
         # return self.prices
 
-            print(price_decimal)
+            #print(price_decimal)
 
 scraper = amazonScraper(["apple","banana","oranges"])
 
