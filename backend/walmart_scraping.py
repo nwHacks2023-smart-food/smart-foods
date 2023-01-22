@@ -3,7 +3,7 @@ from random import choice
 import requests
 
 
-ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
+ran_list  = ["175.253.118.191", "120.182.24.204", "13.217.229.181", "158.6.11.214", "188.173.32.94"]
 
 random_IP = choice(ran_list)
 
@@ -19,30 +19,34 @@ class Walmartscraper():
 
     def scraper_walmart(self):
         for item in self.choices:
-            search = "https://www.walmart.ca/search?q=apple&" + item + "c=10019"
+            search = "https://www.walmart.ca/search?q=" + item + "&c=10019"
             page = requests.get(search, headers=HEADERS)
-            soup = BeautifulSoup(page.content, "lxml")
+            soup = BeautifulSoup(page.content, "html.parser")
             self.return_item_info(item, soup)
         return self.item_info
 
     def return_item_info(self, item, soup):
-        titles = soup.find_all("span", attrs={"data-automation": 'names'})
-        prices = soup.find_all("span", attrs={"data-automation": 'a-price-whole'})
-        links = soup.find_all("a", href=True)
+        products = [product.text for 
+        product in soup.find_all("p", attrs={"data-automation": "css-1p4va6y eudvd6x0"})]
+        prices = [price.text for 
+            price in soup.find_all("p", attrs={"data-automation": "css-1p4va6y eudvd6x0"})]
+        links = [link.get("href") for 
+            link in soup.find_all("a", attrs={"class": "css-mfluef e1m8uw911"})]
         min_price = 100000
 
-        titles = [title.text for title in titles]
-        price = [(price.text) for price in prices]
+        print(soup.find_all("p", attrs={"data-automation": "css-1p4va6y eudvd6x0"}))
 
-        for link in links:
-            if "/search/grocery" in link["href"]:
-                "https://www.walmart.ca"+ link["href"]
-                print(link["href"])
+        products = [title.text for title in products]
+        price = [(price.text) for price in prices]
+        links = [ "https://www.walmart.ca"+ link["href"] for link in links]
+
+        
+
 
         min_price = 10000
-        index = smallest_index(titles, prices, links)
+        index = smallest_index(products, prices, links)
         for i in range(0, index):
-            name = titles[i]
+            name = products[i]
             price = prices[i]
             link = links[i]
 
