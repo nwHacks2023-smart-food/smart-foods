@@ -1,4 +1,5 @@
 import styles from "../styles/index.module.css";
+import Button from "../components/Button/Button";
 
 export default function Home() {
 	return (
@@ -6,8 +7,8 @@ export default function Home() {
 			<div className={styles.banner}>
 				<h1>SmartFoods</h1>
 				<p>Create your smart grocery list now!</p>
+				<Button text="Get Started" path="/choose" />
 			</div>
-			<button>Get Started</button>
 		</div>
 	);
 }

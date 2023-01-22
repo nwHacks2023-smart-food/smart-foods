@@ -20,15 +20,3 @@
 .container p {
     font-weight: 200;
 }
-
-.container button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: #91C788;
-    border: 1px solid #91C788;
-}
-
-.container button:hover {
-    background-color: #91C788;
-    color: white;
-}
