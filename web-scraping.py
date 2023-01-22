@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
-import shutil
-import os
+import random
 
-def amazonCollector(name, db):
+def amazonCollector(name, db, random_IP):
     HEADERS = ({'User-Agent':
-            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/198.88.101.216 Safari/537.36',
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/' + random_IP +  ' Safari/537.36',
             'Accept-Language': 'en-US, en;q=0.5'})
 
     search = "https://www.amazon.ca/s?k="+ name +"&i=grocery&s=review-rank"
@@ -53,29 +52,16 @@ def amazonCollector(name, db):
             return db
         
             
-            
-            
-             
-
-
-
-
-
-
-        
-
-
-    
-
-
-
 
     
 
 
 db = dict()
+ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
 
-db = amazonCollector("milk", db)
+random_IP = random.choice(ran_list)
+
+db = amazonCollector("milk", db, random_IP)
 
 
 print(db)
