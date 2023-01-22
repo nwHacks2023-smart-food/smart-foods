@@ -1,7 +1,7 @@
 from amazon_scraping import amazonScraper
 from saveonfoods import saveOnFoodsCollector
 
-USER_INPUT = ["apples", "lemons", "cup noodles"]
+USER_INPUT = ["apples", "lemons", "bananas"]
 
 
 amazon_options = amazonScraper(USER_INPUT)
