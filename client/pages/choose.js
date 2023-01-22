@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ItemsContext } from '../context/items-context.js';
 import Layout from '../components/Layout/Layout.js';
 import styles from '../styles/choose.module.css';
 import Button from '../components/Button/Button';
@@ -113,27 +114,13 @@ const foodItems = [
 ];
 
 const Choose = () => {
-    const [items, setItems] = useState([]);
     // On items change, store it is local storage
-
-    useEffect(() => {
-        const items = JSON.parse(localStorage.getItem('items'));
-        if (items) {
-            setItems(items);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('items', JSON.stringify(items));
-    }, [items]);
+    const { items, setItems } = useContext(ItemsContext);
 
     const test = async (event) => {
         const itemName = event.target.food.value;
         event.preventDefault();
-        const found = items.find((item) => item.name === itemName);
-        if (found) {
-            return;
-        }
+
         const response = await axios.get(
             `http://127.0.0.1:8000/api/nutrition?food=${itemName}`
         );
@@ -141,9 +128,9 @@ const Choose = () => {
         const { nf_calories, nf_sugars, nf_protein, nf_serving_weight_grams } =
             response.data[itemName];
 
-        setItems([
+        setItems({
             ...items,
-            {
+            [itemName]: {
                 imageSearch: itemName,
                 name: itemName,
                 mass: nf_serving_weight_grams,
@@ -151,7 +138,7 @@ const Choose = () => {
                 sugar: nf_sugars,
                 protein: nf_protein,
             },
-        ]);
+        });
     };
 
     return (
@@ -180,8 +167,9 @@ const Choose = () => {
                         </button>
                     </form>
                     <div className={styles.cards}>
-                        {items?.map((item, index) => {
-                            return <Card key={index} {...item} />;
+                        {Object.keys(items).map((name) => {
+                            const item = items[name];
+                            return <Card key={name} {...item} />;
                         })}
                     </div>
                 </div>
