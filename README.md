@@ -1,3 +1,6 @@
+# Project Description
+Smart foods is a web app that enables users to create a smart shopping list that compares the selected food's nutrients to the recommended nutrient values in a healthy diet. Users can add their sex and days they are planning for to tailor their response. Finally, users are shown their shopping cart with corresponding links to Amazon or Save on Foods to purchase the items online.
+
 ## Demo
 ![image](images/demo-img-0.png)
 ![image](images/demo-img-1.png)
