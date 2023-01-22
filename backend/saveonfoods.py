@@ -32,7 +32,7 @@ class saveOnFoodsCollector():
                  link in soup.find_all("a", {"class": "ProductCardHiddenLink--1rjraab bWuEcw"})]
         min_price = 10000
 
-        
+        print(prices)
 
         for i in range(0, len(products)):
             name = products[i][:products[i].index("<span")]
@@ -47,10 +47,11 @@ class saveOnFoodsCollector():
                     index = i
                     break
 
-            price = price[:index]
+            price = price[:index + 3]
 
             if price != '':
                 price = float(price)
+                print(price)
 
                 if price < float(min_price):
 
