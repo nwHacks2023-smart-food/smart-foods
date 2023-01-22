@@ -1,9 +1,12 @@
-import styles from "./Card2.module.css";
+import styles from "./Card3.module.css";
 import Image from "../Image/Image";
 
-const Card2 = ({imageSearch, name, mass, price, website}) => {
+const Card3 = ({imageSearch, name, mass, price, website}) => {
 	return (
 		<div className={styles.container}>
+			<div className={styles.counter}>
+				<input type="number" max="10" min="1"/>
+			</div>
 			<div className={styles.image}>
 				<Image queryParam={imageSearch} />
 			</div>
@@ -19,4 +22,4 @@ const Card2 = ({imageSearch, name, mass, price, website}) => {
 	);
 };
 
-export default Card2;
+export default Card3;
