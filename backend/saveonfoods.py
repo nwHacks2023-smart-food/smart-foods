@@ -35,11 +35,19 @@ class saveOnFoodsCollector():
         
         for i in range(0, len(products)):
             name = products[i][:products[i].index("<span")]
-            price = prices[i]
+            price = prices[i][1:]
             link = links[i]
+            try:
+                end_index = price.index('/')
+                price = price[:end_index]
+                price = float(price)
+            except:
+                end_index = price.index(" ")
+                price = price[:end_index]
+                price = float(price)
             
             try:
-                if float(price[1:6]) < float(min_price):
+                if price < float(min_price):
                     min_price = price
                     dict_to_add = {
                         "name": name,
@@ -48,7 +56,7 @@ class saveOnFoodsCollector():
                     }
                     self.item_info[item] = dict_to_add
             except ValueError:
-                if float(price[1:6]) < float(min_price[1:6]):
+                if price < float(min_price):
                     min_price = price
                     dict_to_add = {
                         "name": name,
