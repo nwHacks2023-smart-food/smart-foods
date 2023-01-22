@@ -4,6 +4,7 @@ APP_ID = "ff35c543"
 API_KEY = "cf9016eb2bedc6abe0e9620bd6677599"
 REMOTE_USER_ID = 0
 NUTRIENTS = [
+    "serving_weight_grams",
     "calories",
     "total_fat",
     "saturated_fat",
