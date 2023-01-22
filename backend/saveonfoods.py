@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import random
 
-USER_INPUT = ["apples", "lemons", "cup noodles"]
 
 ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
 random_IP = random.choice(ran_list)
@@ -32,22 +31,29 @@ class saveOnFoodsCollector():
         links = [link.get("href") for 
                  link in soup.find_all("a", {"class": "ProductCardHiddenLink--1rjraab bWuEcw"})]
         min_price = 10000
-        
+
+
+
         for i in range(0, len(products)):
             name = products[i][:products[i].index("<span")]
             price = prices[i][1:]
             link = links[i]
-            try:
-                end_index = price.index('/')
-                price = price[:end_index]
-                price = float(price)
-            except:
-                end_index = price.index(" ")
-                price = price[:end_index]
-                price = float(price)
+
             
-            try:
+            index = -1
+
+            for i, c in enumerate(price):
+                if not c.isdigit():
+                    index = i
+                    break
+
+            price = price[:index]
+
+            if price != '':
+                price = float(price)
+
                 if price < float(min_price):
+
                     min_price = price
                     dict_to_add = {
                         "name": name,
@@ -55,12 +61,5 @@ class saveOnFoodsCollector():
                         "link": link
                     }
                     self.item_info[item] = dict_to_add
-            except ValueError:
-                if price < float(min_price):
-                    min_price = price
-                    dict_to_add = {
-                        "name": name,
-                        "price": price,
-                        "link": link
-                    }
-                    self.item_info[item] = dict_to_add
+    
+
