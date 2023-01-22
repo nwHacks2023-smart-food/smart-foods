@@ -20,7 +20,7 @@ def amazonCollector(name, db, random_IP):
     i = 1
 
     for raw_link in taga:
-        if i != 4:
+        if i != 10:
             link = raw_link['href']
 
             
@@ -38,7 +38,7 @@ def amazonCollector(name, db, random_IP):
             price = float(price_whole + "." + price_decimal)
 
             title_value = title.string
-
+            
             db[i - 1] = {title_value, price}
 
             i += 1
