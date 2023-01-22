@@ -55,27 +55,30 @@ const BuildCart = () => {
                                     <>
                                         <Card2
                                             name={key}
-                                            key={itemsByWebsite?.amazon.link}
+                                            key={itemsByWebsite?.amazon?.link}
                                             imageSearch={items[key].imageSearch}
                                             mass={items[key].mass}
-                                            price={itemsByWebsite?.amazon.price}
+                                            price={
+                                                itemsByWebsite?.amazon?.price
+                                            }
                                             website={
-                                                itemsByWebsite?.amazon.link
+                                                itemsByWebsite?.amazon?.link
                                             }
                                             buttonHandler={handleAddProduct}
                                         ></Card2>
                                         <Card2
                                             name={key}
                                             key={
-                                                itemsByWebsite.saveonfood?.link
+                                                itemsByWebsite?.saveonfood?.link
                                             }
                                             imageSearch={items[key].imageSearch}
                                             mass={items[key].mass}
                                             price={
-                                                itemsByWebsite.saveonfood?.price
+                                                itemsByWebsite?.saveonfood
+                                                    ?.price
                                             }
                                             website={
-                                                itemsByWebsite.saveonfood?.link
+                                                itemsByWebsite?.saveonfood?.link
                                             }
                                             buttonHandler={handleAddProduct}
                                         ></Card2>
