@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: smart-food-be-service
+    labels:
+        app: smart-food-be
+spec:
+    type: ClusterIP
+    selector:
+        app: smart-food-be
+    ports:
+        - name: smart-food-be
+          protocol: TCP
+          port: 8000
+          targetPort: 8000
