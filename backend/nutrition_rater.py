@@ -1,22 +1,26 @@
 from nutrition_dict import nutrition_dict
 from nutrition_checker import nutritionChecker
 import pandas as pd 
+import numpy as np
 
 class nutritionRater():
-    def __init__(self, gender, days, nutrient_values: dict):
-        self.gender = gender
+    def __init__(self, sex, days, nutrient_values: dict):
+        self.sex = sex
         self.days = int(days)
         self.nutrition_info = nutrient_values
+        self.nutrition_dv = {}
 
+        self.set_sex_nutrition()
         self.compare_nutrients()
 
-    def compare_nutrients(self):
-        # Set index to determine which value in nutrition_dict to use
-        if self.gender == "Male":
+    def set_sex_nutrition(self):
+        if self.sex == "Man":
             i = 0
         else:
             i = 1
-
+        self.nutrition_dv = pd.Series({nutrient:value[i] for nutrient, value in nutrition_dict.items()})
+       
+    def compare_nutrients(self):
         # Creates series that contains nutriton info of first item
         total_nutrients = pd.Series(self.nutrition_info[next(iter(self.nutrition_info))])
 
@@ -29,14 +33,21 @@ class nutritionRater():
             item_series = pd.Series(self.nutrition_info[item])
             total_nutrients = total_nutrients.add(item_series, fill_value=0)
         
-        print(total_nutrients)
         # Divides series by number of days in budget
         total_nutrients = total_nutrients / self.days
+        keys = total_nutrients.index.tolist()
+        values = nutrition_dict.keys()
+        new_index = dict(zip(keys, values))
+        total_nutrients.rename(new_index, inplace=True)        
+
+        # Comparison logic
         print(total_nutrients)
-            
+        print(self.nutrition_dv)
+        # mask = np.where(total_nutrients < self.nutrition_dv, True, False)
+        # print(mask)
 
 test = nutritionChecker(["apple", "orange", "banana", "cup noodle"])
-test_rater = nutritionRater("Male", 3, test.search_for_nutrition())
+test_rater = nutritionRater("Man", 3, test.search_for_nutrition())
 
 # TODO: Sum numpy arrays together to compare against dict value (based on i)
 # TODO: create individual numpy array for each item???

@@ -2,7 +2,7 @@ from amazon_scraping import amazonScraper
 from saveonfoods import saveOnFoodsCollector
 from walmart_scraping import Walmartscraper
 
-USER_INPUT = ["instant noodles"]
+USER_INPUT = ["Chocolate"]
 
 
 amazon_options = amazonScraper(USER_INPUT)
