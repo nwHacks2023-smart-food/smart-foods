@@ -51,7 +51,6 @@ class nutritionRater():
         over_nutrients = total_nutrients[:-1].loc[over_mask].index.tolist()
         over_nutrients = [str(i).replace("_", " ") for i in over_nutrients]
 
-
         under_return_message = None
         over_return_message = None
 
@@ -72,9 +71,5 @@ class nutritionRater():
             return(over_return_message)
 
 
-test = nutritionChecker(["apple", "orange", "banana", "cup noodle"])
-test_rater = nutritionRater("Man", 3, test.search_for_nutrition())
-
-# TODO: Sum numpy arrays together to compare against dict value (based on i)
-# TODO: create individual numpy array for each item???
-# TODO: Consider how to scale values based on period chosen 
+# test = nutritionChecker(["apple", "orange", "banana", "cup noodle"])
+# test_rater = nutritionRater("Man", 3, test.search_for_nutrition())
