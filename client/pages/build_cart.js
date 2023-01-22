@@ -15,7 +15,13 @@ const BuildCart = () => {
         const getItemsData = async () => {
             const response = await axios.post(
                 'http://localhost:8000/api/items',
+
                 {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*',
+                        'Access-Control-Allow-Credentials': 'true',
+                    },
                     items: Object.keys(items),
                 }
             );
