@@ -9,13 +9,13 @@ const Choose = () => {
 			<div className={styles.container}>
 				<h2 className={styles.step}>Step 1: Choose your foods</h2>
 				<div className={styles.content}>
-					<div className={styles.input}>
+					<form className={styles.input} action="/" method="post">
 						<input type="text" placeholder="Enter a food:" />
-						<button className={styles.addButton}>+</button>
-					</div>
+						<button type="submit" className={styles.addButton}>+</button>
+					</form>
 					<div className={styles.cards}>
 						<Card
-							imageSearch="m"
+							imageSearch="PLACEHOLDER"
 							name="Orange"
 							mass="50g"
 							calories="200"
@@ -24,7 +24,7 @@ const Choose = () => {
 						/>
 					</div>
 				</div>
-				<Button text="Next" path="/choose" />
+				<Button text="Next" path="/build_cart" />
 			</div>
 		</Layout>
 	);
