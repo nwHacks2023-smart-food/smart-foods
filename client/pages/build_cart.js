@@ -39,7 +39,7 @@ const BuildCart = () => {
 	// On items change, store it is local storage
 	useEffect(() => {
 		const getItemsData = async () => {
-			const response = await axios.post("http://localhost:8000/api/items", {
+			const response = await axios.post("/api/items", {
 				items: Object.keys(items),
 			});
 >>>>>>> 9f1b0b6d8ecd4e3d739fbd75e4258a9b9b5bfe62
