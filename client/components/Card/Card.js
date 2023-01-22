@@ -9,12 +9,12 @@ const Card = ({ imageSearch, name, mass, calories, sugar, protein }) => {
 			</div>
 			<div className={styles.name_block}>
 				<p className={styles.name}>{name}</p>
-				<p className={styles.mass}>{mass}</p>
+				<p className={styles.mass}>{mass} g</p>
 			</div>
 			<div className={styles.nutrients}>
 				<p>Calories: {calories}</p>
-				<p>Sugar: {sugar}</p>
-				<p>Protein: {protein}</p>
+				<p>Sugar: {sugar} g</p>
+				<p>Protein: {protein} g</p>
 			</div>
 		</div>
 	);
