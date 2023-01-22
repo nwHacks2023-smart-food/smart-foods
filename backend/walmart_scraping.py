@@ -11,13 +11,13 @@ HEADERS = {'User-Agent':
             'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/' + random_IP +  ' Safari/537.36',
             'Accept-Language': 'en-US, en;q=0.5'}
 
-class amazonScraper():
+class Walmartscraper():
     def __init__(self, user_input: list):
         self.choices = user_input 
         self.item_info = {}
 
 
-    def scrap_amazon(self):
+    def scraper_walmart(self):
         for item in self.choices:
             search = "https://www.walmart.ca/search?q=apple&" + item + "c=10019"
             page = requests.get(search, headers=HEADERS)
@@ -32,9 +32,7 @@ class amazonScraper():
         min_price = 100000
 
         titles = [title.text for title in titles]
-        prices_whole = [(price_whole.text) for price_whole in prices_whole]
-        prices_decimal = [(price_decimal.text).strip(".") for price_decimal in prices_decimal]
-        prices = [float(prices_whole[i] + prices_decimal[i]) for i in range(0, len(prices_whole))]
+        price = [(price.text) for price in prices]
 
         for link in links:
             if "/search/grocery" in link["href"]:
