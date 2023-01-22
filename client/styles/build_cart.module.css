@@ -1,0 +1,38 @@
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.container {
+    width: 30rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.container section {
+    display: flex;
+    gap: 2rem;
+}
+
+.container .step {
+    text-align: center;
+    color: #52734D;
+}
+
+.content {
+    background-color: #DDFFBC;
+    width: 30rem;
+    margin: auto;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.content h3 {
+    text-align: center;
+    color: #91C788;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
