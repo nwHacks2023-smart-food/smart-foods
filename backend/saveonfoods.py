@@ -3,7 +3,11 @@ import requests
 import random
 
 
-ran_list  = ["228.39.248.80", "116.132.147.250", "178.172.154.68", "139.64.230.154", "207.157.75.236"]
+ran_list  = ["147.193.158.146",
+"34.67.133.244",
+"197.209.144.232",
+"63.138.171.176",
+"47.113.19.170"]
 random_IP = random.choice(ran_list)
 
 HEADERS = ({'User-Agent':
@@ -32,7 +36,7 @@ class saveOnFoodsCollector():
                  link in soup.find_all("a", {"class": "ProductCardHiddenLink--1rjraab bWuEcw"})]
         min_price = 10000
 
-
+        print(prices)
 
         for i in range(0, len(products)):
             name = products[i][:products[i].index("<span")]
@@ -47,10 +51,11 @@ class saveOnFoodsCollector():
                     index = i
                     break
 
-            price = price[:index]
+            price = price[:index + 3]
 
             if price != '':
                 price = float(price)
+                print(price)
 
                 if price < float(min_price):
 
