@@ -39,7 +39,6 @@ class amazonScraper():
         links = [ "https://www.amazon.ca"+ link["href"] for link in links]
 
         min_price = 10000
-        dict = {}
         for i in range(0, len(titles)):
             name = titles[i]
             price = prices[i]
