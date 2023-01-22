@@ -41,4 +41,4 @@ class NutritionChecker():
         nutrient_list = {nutrient:value for nutrient, value in raw_info.items() if nutrient[3:] in NUTRIENTS}
         self.nutrition_info[item] = nutrient_list
 
-# test = NutritionChecker(["apple", "orange", "banana"])
+test = NutritionChecker(["apple", "orange", "banana"])
