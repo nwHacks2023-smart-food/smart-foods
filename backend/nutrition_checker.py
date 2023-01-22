@@ -5,7 +5,7 @@ APP_ID = "ff35c543"
 API_KEY = "cf9016eb2bedc6abe0e9620bd6677599"
 REMOTE_USER_ID = 0
 
-class NutritionChecker():
+class nutritionChecker():
     def __init__(self, user_input: list): 
         self.nix = Nutritionix(app_id=APP_ID, api_key=API_KEY)
         self.choices = user_input
@@ -23,5 +23,5 @@ class NutritionChecker():
         nutrient_list = {nutrient:value for nutrient, value in raw_info.items() if nutrient[3:] in nutrition_dict}
         self.nutrition_info[item] = nutrient_list
 
-test = NutritionChecker(["apple", "orange", "banana", "cup noodle"])
-print(test.search_for_nutrition())
+test = nutritionChecker(["apple", "orange", "banana", "cup noodle"])
+# print(test.search_for_nutrition())
